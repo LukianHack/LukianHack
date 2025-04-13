@@ -1,0 +1,114 @@
+/* Стили для страницы */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: url('https://source.unsplash.com/1600x900/?hacker,technology') no-repeat center center/cover;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Элементы навигации */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.navbar__logo {
+  font-size: 2em;
+  color: #ff7e5f;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.navbar__menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar__links {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.navbar__links:hover {
+  color: #ff7e5f;
+}
+
+/* Анимация появления при скролле */
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.5s forwards;
+}
+
+.hero__heading {
+  font-size: 4em;
+  font-weight: bold;
+  color: #ff7e5f;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hero__description {
+  font-size: 1.5em;
+  margin: 20px 0;
+}
+
+.main__btn a {
+  background: #ff7e5f;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s ease-in-out;
+}
+
+.main__btn a:hover {
+  background: #feb47b;
+  transform: scale(1.05);
+}
+
+/* Форма регистрации */
+.form-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.5s 0.5s forwards;
+}
+
+.form-container input {
+  width:
