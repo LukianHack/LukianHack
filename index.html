@@ -1,94 +1,206 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LukianHack - Управление ботами Minecraft</title>
-    <link rel="stylesheet" href="styles.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: #121212;
-        color: white;
-        text-align: center;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LukianHack - Чит клиент</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+    crossorigin="anonymous"
+  />
+  <style>
+    /* Стили для страницы */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-      }
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://source.unsplash.com/1600x900/?hacker,technology') no-repeat center center/cover;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      height: 100vh;
+    }
 
-      h1 {
-        color: #ff7e5f;
-        font-size: 3em;
-        margin-bottom: 20px;
-      }
+    .navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px 30px;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-      input, button {
-        padding: 10px;
-        margin: 10px 0;
-        font-size: 1.2em;
-        border-radius: 5px;
-      }
+    .navbar__logo {
+      font-size: 2em;
+      color: #ff7e5f;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: bold;
+    }
 
-      button {
-        background-color: #ff7e5f;
-        border: none;
-        color: white;
-        cursor: pointer;
-      }
+    .navbar__menu {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
 
-      button:hover {
-        background-color: #feb47b;
-      }
+    .navbar__links {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
 
-      .output {
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #333;
-        border-radius: 5px;
-        max-width: 600px;
-        margin: 20px auto;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Управление ботами Minecraft</h1>
+    .navbar__links:hover {
+      color: #ff7e5f;
+    }
 
-      <div>
-        <label for="botCount">Количество ботов:</label>
-        <input type="number" id="botCount" value="5" min="1" max="100" />
-        <button onclick="launchBots()">Запустить ботов</button>
-      </div>
+    .main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      align-items: center;
+      text-align: center;
+    }
 
-      <div>
-        <label for="message">Сообщение для ботов:</label>
-        <input type="text" id="message" placeholder="Введите сообщение" />
-        <button onclick="sendMessage()">Отправить сообщение</button>
-      </div>
+    .hero__heading {
+      font-size: 4em;
+      font-weight: bold;
+      color: #ff7e5f;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
 
-      <div class="output" id="output"></div>
+    .hero__description {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+
+    .main__btn a {
+      background: #ff7e5f;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .main__btn a:hover {
+      background: #feb47b;
+    }
+
+    /* Форма ввода для ботов и IP */
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+      width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: white;
+    }
+
+    .form-container button {
+      background: #ff7e5f;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+    }
+
+    .form-container button:hover {
+      background: #feb47b;
+    }
+
+    .chat-bot {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: white;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Навигация -->
+  <nav class="navbar">
+    <div class="navbar__logo">LukianHack</div>
+    <ul class="navbar__menu">
+      <li><a href="#register" class="navbar__links">Регистрация</a></li>
+      <li><a href="#features" class="navbar__links">Особенности</a></li>
+      <li><a href="#pricing" class="navbar__links">Тарифы</a></li>
+      <li><a href="#contact" class="navbar__links">Контакты</a></li>
+    </ul>
+  </nav>
+
+  <!-- Главная секция -->
+  <div class="main">
+    <h1 class="hero__heading">LukianHack - Ваш лучший чит клиент</h1>
+    <p class="hero__description">Улучшите свой игровой опыт с помощью передовых инструментов</p>
+    <div class="main__btn">
+      <a href="#register">Главная</a>
     </div>
+  </div>
 
-    <script>
-      // Отправка команд на сервер через API или WebSocket
-      function launchBots() {
-        const botCount = document.getElementById('botCount').value;
-        document.getElementById('output').innerHTML = `Запущено ${botCount} ботов...`;
+  <!-- Форма для ввода IP и запуска ботов -->
+  <div class="form-container" id="bot-form">
+    <h2>Запуск бота</h2>
+    <form id="botForm" onsubmit="startBots(event)">
+      <input type="text" id="server-ip" placeholder="IP сервера (например, 127.0.0.1)" required />
+      <input type="number" id="bot-count" placeholder="Количество ботов" required />
+      <button type="submit">Запустить ботов</button>
+    </form>
+  </div>
 
-        // Здесь можно отправить запрос на сервер с созданием ботов
-        // Пример через WebSocket или HTTP
+  <!-- Чат ботов -->
+  <div class="chat-bot" id="chat-box">
+    <h3>Чат ботов:</h3>
+    <p id="bot-chat">Здесь будут сообщения от ботов.</p>
+  </div>
+
+  <script>
+    function startBots(event) {
+      event.preventDefault();
+      const serverIP = document.getElementById('server-ip').value;
+      const botCount = document.getElementById('bot-count').value;
+
+      if (botCount <= 0) {
+        alert("Количество ботов должно быть больше нуля.");
+        return;
       }
 
-      function sendMessage() {
-        const message = document.getElementById('message').value;
-        document.getElementById('output').innerHTML = `Боты отправляют сообщение: "${message}"`;
+      document.getElementById('bot-chat').innerText = `Запуск ${botCount} ботов на сервер ${serverIP}...`;
 
-        // Здесь можно отправить запрос на сервер для отправки сообщения от всех ботов
-        // Пример через WebSocket или HTTP
-      }
-    </script>
-  </body>
+      // Пример логики запуска ботов (для демонстрации):
+      setTimeout(() => {
+        document.getElementById('bot-chat').innerText = `Боты успешно подключились к серверу ${serverIP}!`;
+      }, 2000);
+    }
+  </script>
+</body>
 </html>
