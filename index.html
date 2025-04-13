@@ -3,285 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LukianHack - Чит клиент</title>
+    <title>LukianHack - Управление ботами Minecraft</title>
     <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-      crossorigin="anonymous"
-    />
     <style>
-      /* Стили для страницы */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
       body {
         font-family: Arial, sans-serif;
-        background: url('https://source.unsplash.com/1600x900/?hacker,technology') no-repeat center center/cover;
-        background-size: cover;
+        background: #121212;
         color: white;
         text-align: center;
-        height: 100vh;
       }
 
-      .navbar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 10px 30px;
-        background-color: rgba(0, 0, 0, 0.7);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .navbar__logo {
-        font-size: 2em;
-        color: #ff7e5f;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        font-weight: bold;
-      }
-
-      .navbar__menu {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-      }
-
-      .navbar__links {
-        color: white;
-        text-decoration: none;
-        font-size: 1.1em;
-        transition: color 0.3s;
-      }
-
-      .navbar__links:hover {
-        color: #ff7e5f;
-      }
-
-      .main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        align-items: center;
-        text-align: center;
-      }
-
-      .hero__heading {
-        font-size: 4em;
-        font-weight: bold;
-        color: #ff7e5f;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-      }
-
-      .hero__description {
-        font-size: 1.5em;
-        margin: 20px 0;
-      }
-
-      .main__btn a {
-        background: #ff7e5f;
-        color: white;
-        padding: 15px 30px;
-        font-size: 1.2em;
-        border-radius: 30px;
-        text-decoration: none;
-        transition: background 0.3s;
-      }
-
-      .main__btn a:hover {
-        background: #feb47b;
-      }
-
-      /* Форма регистрации */
-      .form-container {
-        background-color: rgba(0, 0, 0, 0.8);
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
         padding: 20px;
-        border-radius: 10px;
-        margin-top: 30px;
-        width: 300px;
-        margin-left: auto;
-        margin-right: auto;
       }
 
-      .form-container input {
-        width: 100%;
+      h1 {
+        color: #ff7e5f;
+        font-size: 3em;
+        margin-bottom: 20px;
+      }
+
+      input, button {
         padding: 10px;
         margin: 10px 0;
-        border: none;
+        font-size: 1.2em;
         border-radius: 5px;
-        background: #333;
-        color: white;
       }
 
-      .form-container button {
-        background: #ff7e5f;
-        color: white;
-        padding: 10px;
-        width: 100%;
+      button {
+        background-color: #ff7e5f;
         border: none;
-        border-radius: 5px;
+        color: white;
         cursor: pointer;
-        font-size: 1.1em;
       }
 
-      .form-container button:hover {
-        background: #feb47b;
+      button:hover {
+        background-color: #feb47b;
       }
 
-      /* Тарифы */
-      .pricing {
-        padding: 50px 0;
-        background-color: #222;
-      }
-
-      .pricing h1 {
-        font-size: 2.5em;
-        margin-bottom: 30px;
-        color: #ff7e5f;
-      }
-
-      .pricing .price-card {
-        background-color: #333;
-        padding: 30px;
-        border-radius: 10px;
-        margin: 20px;
-        color: white;
-        width: 300px;
-        display: inline-block;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      }
-
-      .pricing .price-card h2 {
-        font-size: 1.8em;
-        margin-bottom: 10px;
-      }
-
-      .pricing .price-card p {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-      }
-
-      .pricing .price-card .price {
-        font-size: 2.5em;
-        color: #ff7e5f;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-
-      .pricing .price-card .btn {
-        background: #ff7e5f;
-        color: white;
-        padding: 15px 30px;
-        font-size: 1.2em;
-        border-radius: 30px;
-        text-decoration: none;
-        transition: background 0.3s;
-      }
-
-      .pricing .price-card .btn:hover {
-        background: #feb47b;
-      }
-
-      /* Подвал */
-      .footer__container {
-        background-color: #333;
-        color: white;
-        padding: 20px 0;
+      .output {
         margin-top: 20px;
-      }
-
-      .footer__social {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-      }
-
-      .footer__social a {
-        color: white;
-        font-size: 1.8em;
-        transition: color 0.3s;
-      }
-
-      .footer__social a:hover {
-        color: #ff7e5f;
+        padding: 10px;
+        background-color: #333;
+        border-radius: 5px;
+        max-width: 600px;
+        margin: 20px auto;
       }
     </style>
   </head>
   <body>
-    <!-- Навигация -->
-    <nav class="navbar">
-      <div class="navbar__logo">LukianHack</div>
-      <ul class="navbar__menu">
-        <li><a href="#register" class="navbar__links">Регистрация</a></li>
-        <li><a href="#features" class="navbar__links">Особенности</a></li>
-        <li><a href="#pricing" class="navbar__links">Тарифы</a></li>
-        <li><a href="#contact" class="navbar__links">Контакты</a></li>
-        <li><a href="admin.html" class="navbar__links">Админ Панель</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <h1>Управление ботами Minecraft</h1>
 
-    <!-- Главная секция -->
-    <div class="main">
-      <h1 class="hero__heading">LukianHack - Ваш лучший чит клиент</h1>
-      <p class="hero__description">Улучшите свой игровой опыт с помощью передовых инструментов</p>
-      <div class="main__btn">
-        <a href="#register">Главная</a>
+      <div>
+        <label for="botCount">Количество ботов:</label>
+        <input type="number" id="botCount" value="5" min="1" max="100" />
+        <button onclick="launchBots()">Запустить ботов</button>
       </div>
-    </div>
 
-    <!-- Форма регистрации -->
-    <div class="form-container" id="register">
-      <h2>Регистрация</h2>
-      <form id="registerForm" onsubmit="return registerUser(event)">
-        <input type="text" id="username" placeholder="Имя пользователя" required />
-        <input type="email" id="email" placeholder="Электронная почта" required />
-        <input type="password" id="password" placeholder="Пароль" required />
-        <input type="password" id="confirmPassword" placeholder="Подтверждение пароля" required />
-        <button type="submit">Зарегистрироваться</button>
-      </form>
-    </div>
+      <div>
+        <label for="message">Сообщение для ботов:</label>
+        <input type="text" id="message" placeholder="Введите сообщение" />
+        <button onclick="sendMessage()">Отправить сообщение</button>
+      </div>
 
-    <!-- Тарифы -->
-    <div class="pricing" id="pricing">
-      <h1>Тарифы</h1>
-      <div class="price-card">
-        <h2>Бесплатно</h2>
-        <p>Доступ к основным функциям</p>
-        <div class="price">0£</div>
-        <a href="#" class="btn">Выбрать</a>
-      </div>
-      <div class="price-card">
-        <h2>Премиум</h2>
-        <p>Все функции и приоритетная поддержка</p>
-        <div class="price">5£</div>
-        <a href="#" class="btn">Выбрать</a>
-      </div>
+      <div class="output" id="output"></div>
     </div>
 
     <script>
-      async function registerUser(event) {
-        event.preventDefault(); // Предотвращаем отправку формы
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
+      // Отправка команд на сервер через API или WebSocket
+      function launchBots() {
+        const botCount = document.getElementById('botCount').value;
+        document.getElementById('output').innerHTML = `Запущено ${botCount} ботов...`;
 
-        if (password !== confirmPassword) {
-          alert('Пароли не совпадают!');
-          return;
-        }
+        // Здесь можно отправить запрос на сервер с созданием ботов
+        // Пример через WebSocket или HTTP
+      }
 
-        // Обработка регистрации (например, отправка на сервер)
-        alert('Регистрация прошла успешно!');
+      function sendMessage() {
+        const message = document.getElementById('message').value;
+        document.getElementById('output').innerHTML = `Боты отправляют сообщение: "${message}"`;
+
+        // Здесь можно отправить запрос на сервер для отправки сообщения от всех ботов
+        // Пример через WebSocket или HTTP
       }
     </script>
   </body>
